@@ -5,15 +5,19 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import Home from '../screens/Home';
+import Market from '../screens/Market';
+import Portfolio from '../screens/Portfolio';
+import Profile from '../screens/Profile';
+import Rankings from '../screens/Rankings';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
-
+import { BottomTabParamList} from '../types';
+import { Entypo,FontAwesome5,MaterialIcons,FontAwesome,AntDesign } from '@expo/vector-icons';
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
@@ -21,20 +25,41 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Home"
+        component={Home}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <Entypo name="home" size={30} color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Portfolio"
+        component={Portfolio}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <AntDesign name="piechart" size={30} color={color} />,
+        }}
+      />
+       <BottomTab.Screen
+        name="Market"
+        component={Market}
+        options={{
+          tabBarIcon: ({ color }) => <FontAwesome5 name="chart-line" size={30} color={color} />,
+        }}
+      />
+         <BottomTab.Screen
+        name="Rankings"
+        component={Rankings}
+        options={{
+          tabBarIcon: ({ color }) => <MaterialIcons name="leaderboard" size={30} color={color} />,
+        }}
+      />
+         <BottomTab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color }) => <FontAwesome name="user" size={30} color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -49,30 +74,4 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
-  return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
-      />
-    </TabOneStack.Navigator>
-  );
-}
-
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
-
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
-      />
-    </TabTwoStack.Navigator>
-  );
-}
