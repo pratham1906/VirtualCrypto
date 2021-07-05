@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import styles from "./styles";
+import PercentageChange from "../../utils/PercentageChange";
 export const MarketCoinProps = {
   porfolioCoin: {
     image: String,
@@ -26,9 +27,7 @@ const MarketCoin = (props: MarketCoinProps) => {
       <View style={{ alignItems: "flex-end" }}>
         <Text style={styles.value}>${valueUSD}</Text>
 
-        <Text style={{color:valueChange24H>0?'#4bd000':'#f10000'}}>
-           {valueChange24H>0 && '+ '} {valueChange24H}%
-        </Text>
+       <PercentageChange value={valueChange24H}/>
       </View>
     </View>
   );
