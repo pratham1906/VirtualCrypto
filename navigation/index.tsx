@@ -13,6 +13,7 @@ import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import CoinDetails from '../screens/CoinDetails/index'
+import CoinExchange from '../screens/CoinExchange/CoinExchange';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -32,7 +33,9 @@ function RootNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="CoinDetails" component={CoinDetails} options={{headerShown:true,headerTitle:"Price Data"}}/>
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="CoinExchange" component={CoinExchange} options={{headerShown:true,headerTitle:"Coin Exchange"}}/>
+
+
     </Stack.Navigator>
   );
 }

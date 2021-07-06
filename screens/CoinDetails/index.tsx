@@ -4,6 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 import PercentageChange from "../../utils/PercentageChange";
 import CoinPriceGraph from "../../components/CoinPriceGraph/CoinPriceGraph";
+import { useNavigation } from "@react-navigation/core";
 const historyString=JSON.stringify([ 47222.9831719397,
     47434.65047738381,
     47607.369136516856,
@@ -188,12 +189,19 @@ const CoinDetails = () => {
     amount:2
   });
 
+  const navigation=useNavigation();
   const onBuy=()=>{
-
+navigation.navigate('CoinExchange',{
+  isBuy:true,
+  coinData:coinData
+})
   }
 
   const onSell=()=>{
-
+    navigation.navigate('CoinExchange',{
+      isBuy:false,
+      coinData:coinData
+    })
   }
   return (
     <View style={styles.root}>
@@ -247,10 +255,10 @@ const CoinDetails = () => {
       </View>
 
       <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%',marginTop:'auto'}}> 
-          <Pressable style={[styles.button,{backgroundColor:'#20B100'}]}>
+          <Pressable style={[styles.button,{backgroundColor:'#20B100'}]} onPress={onBuy}>
               <Text style={{fontWeight:'bold',color:'white'}}>Buy</Text>
           </Pressable>
-          <Pressable style={[styles.button,{backgroundColor:'red'}]}>
+          <Pressable style={[styles.button,{backgroundColor:'red'}]} onPress={onSell}>
               <Text style={{fontWeight:'bold',color:'white'}}>Sell</Text>
           </Pressable>
       </View>
