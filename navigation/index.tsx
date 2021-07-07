@@ -14,6 +14,7 @@ import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import CoinDetails from '../screens/CoinDetails/index'
 import CoinExchange from '../screens/CoinExchange/CoinExchange';
+import Welcome from '../screens/Welcome';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -31,6 +32,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Welcome" component={Welcome}/>
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="CoinDetails" component={CoinDetails} options={{headerShown:true,headerTitle:"Price Data"}}/>
       <Stack.Screen name="CoinExchange" component={CoinExchange} options={{headerShown:true,headerTitle:"Coin Exchange"}}/>

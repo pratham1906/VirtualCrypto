@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Root: undefined;
   CoinDetails:undefined;
   CoinExchange:undefined;
+  Welcome:undefined
 };
 
 export type BottomTabParamList = {
